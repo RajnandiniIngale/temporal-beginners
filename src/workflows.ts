@@ -1,20 +1,17 @@
 import { proxyActivities } from "@temporalio/workflow";
-import { log } from "@temporalio/workflow";
-import type * as activities from "./activities";
 
-const { greet } = proxyActivities<typeof activities>({
-  startToCloseTimeout: "10 seconds",
+import * as activities from "./activities";
+
+const { greet, add } = proxyActivities<typeof activities>({
+  startToCloseTimeout: "1 minute",
 });
 
-export async function greetingWorkflow(name: string): Promise<string> {
-  log.info(`Starting greeting workflow for: ${name}`);
-  log.info('About to call greet activity');
-  try {
-    const greeting = await greet(name);
-    log.info(`Greeting workflow completed with result: ${greeting}`);
-    return greeting;
-  } catch (error) {
-    log.error('Error in greetingWorkflow:');
-    throw error;
-  }
+export async function greetWorkflow(name: string): Promise<string> {
+  const greeting = await greet(name);
+  return greeting;
+}
+
+export async function addWorkflow(a: number, b: number): Promise<number> {
+  const ans = await add(a, b);
+  return ans;
 }

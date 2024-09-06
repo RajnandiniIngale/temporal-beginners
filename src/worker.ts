@@ -1,22 +1,18 @@
-import { Worker } from '@temporalio/worker';
-import * as activities from './activities';
+import { Worker } from "@temporalio/worker";
+import *  as activities from './activities';
 
 async function run() {
+
   const worker = await Worker.create({
     workflowsPath: require.resolve('./workflows'),
-    activities,
-    taskQueue: 'my-task-queue'
-  });
+    taskQueue: 'new-task-queue',
+    activities
+  })
 
-  console.log('Worker is starting...');
-  
-  worker.run().catch((err) => {
-    console.error("Error in worker: ", err);
-    process.exit(1);
-  });
+  await worker.run();
 }
 
 run().catch((err) => {
-  console.error("Error starting worker: ", err);
+  console.error(err);
   process.exit(1);
-});
+})
