@@ -1,0 +1,20 @@
+{
+  "name": "project-1",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "mech",
+  "license": "ISC",
+  "dependencies": {
+    "@temporalio/client": "^1.11.1",
+    "@temporalio/common": "^1.11.1",
+    "@temporalio/worker": "^1.11.1",
+    "dotenv": "^16.4.5",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.5.4"
+  }
+}
